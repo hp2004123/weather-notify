@@ -27,6 +27,6 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     public ResponseEntity lineNotify(List<MyWeather> list, Pm25 pm25) {
-        return null;
+        return weatherDao.lineNotify(list, pm25);
     }
 }

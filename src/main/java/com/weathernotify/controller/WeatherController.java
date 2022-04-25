@@ -60,9 +60,7 @@ private WeatherService weatherService;
 
         List<MyWeather> list = weatherService.getWeather();
         Pm25 pm25 = weatherService.getPm25();
-
        return weatherService.lineNotify(list, pm25);
-
     }
 }
 

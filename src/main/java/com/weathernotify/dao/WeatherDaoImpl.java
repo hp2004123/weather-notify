@@ -260,7 +260,8 @@ public class WeatherDaoImpl implements WeatherDao {
                 requestEntity,
                 Object.class
         );
-        return  ResponseEntity.ok().build();
+
+        return  ResponseEntity.ok("notify success");
     }
          /*
         1
