@@ -34,7 +34,12 @@ private WeatherService weatherService;
     public  ResponseEntity<Pm25> getPm25() {
 
         Pm25 pm25 =  weatherService.getPm25();
-        return ResponseEntity.ok(pm25);
+        if(pm25 != null){
+            return ResponseEntity.ok(pm25);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
 
@@ -44,7 +49,11 @@ private WeatherService weatherService;
     public ResponseEntity<List<MyWeather>> getWeather() {
 
         List<MyWeather> list = weatherService.getWeather();
-        return ResponseEntity.ok(list);
+        if(list.size() > 0){
+            return ResponseEntity.ok(list);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 
 

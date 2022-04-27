@@ -43,7 +43,12 @@ public class WeatherDaoImpl implements WeatherDao {
 
         Pm25 pm25 = responseEntity.getBody();
 
-        return pm25;
+      if(pm25 != null) {
+          return pm25;
+      }
+      else {
+          return null;
+      }
 
 
     }
@@ -68,9 +73,6 @@ public class WeatherDaoImpl implements WeatherDao {
         );
 
 
-
-
-
         Weather weather = responseEntity.getBody();
         com.weathernotify.model.Weather.Records records = weather.getRecords();
         Result result = weather.getResult();
@@ -89,28 +91,26 @@ public class WeatherDaoImpl implements WeatherDao {
         for (Location location : locationList) {
 
 
-            String  locationName = location.getLocationName();
+            String locationName = location.getLocationName();
             List<WeatherElement> weatherElementList = location.getWeatherElement();
 
             MyWeather[] myWeatherArr = {new MyWeather(), new MyWeather(), new MyWeather()};
 
 
-            for(WeatherElement weatherElement : weatherElementList){//5 count
+            for (WeatherElement weatherElement : weatherElementList) {//5 count
 
                 String elementName = weatherElement.getElementName();
 
-                List<Time> timeList =  weatherElement.getTime();
+                List<Time> timeList = weatherElement.getTime();
 
 
-
-                for(Time time : timeList){//3 count
+                for (Time time : timeList) {//3 count
 
                     myWeatherArr[counter].setLocationName(locationName);
 
                     Parameter parameter = time.getParameter();
 
-                    switch (elementName){
-
+                    switch (elementName) {
 
 
                         case "Wx":
@@ -139,21 +139,26 @@ public class WeatherDaoImpl implements WeatherDao {
                             myWeatherArr[counter].setFeel(parameter.getParameterName());
                             break;
                     }
-                    counter ++ ;
+                    counter++;
                 }
                 counter = 0;
 
             }
 
-            for(MyWeather myWeather : myWeatherArr){
+            for (MyWeather myWeather : myWeatherArr) {
                 list.add(myWeather);
             }
         }
 
-
-
-        return list;
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
     }
+
+
+
 
     @Override
     public ResponseEntity lineNotify(List<MyWeather> list, Pm25 pm25) {
@@ -254,7 +259,7 @@ public class WeatherDaoImpl implements WeatherDao {
 
         HttpEntity requestEntity = new HttpEntity(body, requestHeaders);
 
-        ResponseEntity<Object> postStudentEntity = restTemplate.exchange(
+            restTemplate.exchange(
                 "https://notify-api.line.me/api/notify",
                 HttpMethod.POST,
                 requestEntity,
