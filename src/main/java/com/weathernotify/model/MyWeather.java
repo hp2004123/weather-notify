@@ -12,8 +12,8 @@ public class MyWeather {
 
 
 
-    private String  startTime;
-    private String  endTime;
+    private Date  startTime;
+    private Date  endTime;
     private String  sky;
     private Integer skyImgNumber;
     private Integer rain;

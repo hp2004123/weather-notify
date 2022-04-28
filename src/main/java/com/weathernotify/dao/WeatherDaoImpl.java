@@ -189,7 +189,7 @@ public class WeatherDaoImpl implements WeatherDao {
 
 
 
-                msg +=  "\n時間："   + myWeather.getStartTime().substring(5,16) + "~ " + myWeather.getEndTime().substring(5,16) +
+                msg +=  "\n時間："   + myWeather.getStartTime().toString().substring(5,16) + "~ " + myWeather.getEndTime().toString().substring(5,16) +
                         "\n降雨率：" + myWeather.getRain() +"%"+
                         "\n體感："   + myWeather.getFeel() +
                         "\n天氣："   + myWeather.getSky()  +

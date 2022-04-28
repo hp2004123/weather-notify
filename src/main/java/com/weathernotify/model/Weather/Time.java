@@ -11,10 +11,11 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Time {
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date startTime;
 
-    private String startTime;
-
-    private String endTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date endTime;
 
     private Parameter parameter;
 }
